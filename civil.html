@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Engenharia Civil | Seu Nome Engenharia</title>
+    <meta name="description" content="Conheça nossos serviços de Engenharia Civil, incluindo projetos estruturais, laudos técnicos, gerenciamento de obras e muito mais.">
+    <meta name="keywords" content="engenharia civil, projetos estruturais, laudos, gerenciamento de obras, construção">
+    <meta name="author" content="Seu Nome Engenharia">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* CSS GERAL E VARIÁVEIS (MESMO DE INDEX.HTML) */
+        :root {
+            --primary-color: #0A2647;
+            --secondary-color: #144272;
+            --accent-color: #FFC107;
+            --light-gray-color: #f4f7fc;
+            --dark-gray-color: #333333;
+            --white-color: #ffffff;
+            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--dark-gray-color);
+            background-color: var(--white-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 193, 7, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 193, 7, 0.5);
+        }
+
+        /* HEADER (IDÊNTICO AO INDEX.HTML) */
+        .header {
+            background-color: var(--white-color);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: var(--box-shadow);
+        }
+        .navbar { display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 50px; }
+        .nav-menu { list-style: none; display: flex; }
+        .nav-item { margin-left: 30px; }
+        .nav-link { text-decoration: none; color: var(--primary-color); font-weight: 500; position: relative; padding-bottom: 5px; transition: color 0.3s ease; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent-color); transition: width 0.3s ease; }
+        .nav-link:hover, .nav-link.active { color: var(--secondary-color); }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .hamburger { display: none; cursor: pointer; font-size: 1.8rem; color: var(--primary-color); }
+        .dropdown { position: relative; }
+        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: var(--white-color); list-style: none; box-shadow: var(--box-shadow); border-radius: var(--border-radius); padding: 10px 0; width: 250px; margin-top: 10px; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; }
+        .dropdown:hover .dropdown-menu { display: block; opacity: 1; transform: translateY(0); }
+        .dropdown-item a { display: block; padding: 10px 20px; text-decoration: none; color: var(--primary-color); transition: background-color 0.3s ease, color 0.3s ease; }
+        .dropdown-item a:hover { background-color: var(--accent-color); color: var(--white-color); }
+
+        /* ESTILOS DA PÁGINA DE SERVIÇO */
+        .service-page-header {
+            padding-top: 150px;
+            padding-bottom: 70px;
+            background-color: var(--light-gray-color);
+            text-align: center;
+        }
+        .service-page-header h1 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        .service-page-header p {
+            font-size: 1.1rem;
+            color: var(--dark-gray-color);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .service-content-section {
+            padding: 80px 0;
+        }
+        .service-layout {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 50px;
+            align-items: flex-start;
+        }
+        .service-details h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .service-details p {
+            margin-bottom: 30px;
+        }
+        .service-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .service-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .service-list .icon {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            width: 25px;
+        }
+        .service-images img {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+        }
+
+        /* FOOTER (IDÊNTICO AO INDEX.HTML) */
+        footer { background-color: var(--primary-color); color: var(--light-gray-color); padding: 30px 0; }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; }
+        .footer-logo img { height: 40px; opacity: 0.8; }
+
+        /* WHATSAPP FLOAT (IDÊNTICO AO INDEX.HTML) */
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2.5rem; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: transform 0.3s ease; z-index: 999; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 992px) {
+            .service-layout {
+                grid-template-columns: 1fr;
+            }
+            .service-images {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-menu { position: fixed; left: -100%; top: 80px; flex-direction: column; background-color: var(--white-color); width: 100%; text-align: center; transition: 0.3s; box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05); }
+            .nav-menu.active { left: 0; }
+            .nav-item { margin: 20px 0; }
+            .dropdown-menu { position: static; display: block; width: 100%; box-shadow: none; opacity: 1; transform: none; background-color: var(--light-gray-color); }
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-logo { margin-top: 20px; }
+            .service-page-header h1 { font-size: 2.5rem; }
+        }
+         @media (max-width: 480px) {
+            .service-images { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO E NAVEGAÇÃO -->
+    <header class="header">
+        <nav class="navbar container">
+            <a href="index.html" class="logo">
+                <img src="https://placehold.co/150x50/0A2647/FFC107?text=SuaLogo&font=poppins" alt="Logo da Empresa de Engenharia">
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html#sobre" class="nav-link">Sobre</a></li>
+                <li class="nav-item dropdown">
+                    <a href="index.html#servicos" class="nav-link">Serviços <i class="fas fa-chevron-down fa-xs"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item"><a href="civil.html">Engenharia Civil</a></li>
+                        <li class="dropdown-item"><a href="eletrica.html">Engenharia Elétrica</a></li>
+                        <li class="dropdown-item"><a href="mecanica.html">Engenharia Mecânica</a></li>
+                        <li class="dropdown-item"><a href="seguranca.html">Segurança do Trabalho</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="index.html#projetos" class="nav-link">Projetos</a></li>
+                <li class="nav-item"><a href="index.html#contato" class="nav-link">Contato</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- CABEÇALHO DA PÁGINA -->
+        <section class="service-page-header">
+            <div class="container">
+                <h1>Engenharia Civil</h1>
+                <p>Do planejamento à execução, oferecemos soluções robustas e inovadoras para construir, reformar e regularizar.</p>
+            </div>
+        </section>
+
+        <!-- CONTEÚDO DA PÁGINA -->
+        <section class="service-content-section">
+            <div class="container service-layout">
+                <div class="service-details">
+                    <h2>Soluções Completas para sua Construção</h2>
+                    <p>Nossa equipe de engenharia civil é especializada em transformar ideias em estruturas sólidas e funcionais. Atuamos em todas as fases do projeto, garantindo segurança, qualidade e conformidade com as normas técnicas, seja para edificações residenciais, comerciais ou industriais.</p>
+                    
+                    <h3>Nossos Serviços Incluem:</h3>
+                    <ul class="service-list">
+                        <li><i class="icon fas fa-check-circle"></i>Projetos Estruturais (Concreto e Metálica)</li>
+                        <li><i class="icon fas fa-check-circle"></i>Laudos Técnicos e Perícias</li>
+                        <li><i class="icon fas fa-check-circle"></i>Gerenciamento e Fiscalização de Obras</li>
+                        <li><i class="icon fas fa-check-circle"></i>Projetos Hidrossanitários</li>
+                        <li><i class="icon fas fa-check-circle"></i>Regularização de Imóveis</li>
+                        <li><i class="icon fas fa-check-circle"></i>Consultoria em Patologias Construtivas</li>
+                    </ul>
+                    <br>
+                    <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20um%20orçamento%20em%20Engenharia%20Civil." target="_blank" class="cta-button">Solicite um Orçamento</a>
+                </div>
+                <div class="service-images">
+                    <img src="https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Engenharia Civil - Obra">
+                    <img src="https://images.pexels.com/photos/3153198/pexels-photo-3153198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Engenharia Civil - Plantas">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2024 Seu Nome Engenharia. Todos os direitos reservados.</p>
+            <div class="footer-logo">
+                <a href="index.html">
+                     <img src="https://placehold.co/120x40/FFFFFF/0A2647?text=SuaLogo&font=poppins" alt="Logo da Empresa de Engenharia no rodapé">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTÃO FLUTUANTE DO WHATSAPP -->
+    <a href="https://wa.me/5500000000000?text=Olá!%20Gostaria%20de%20um%20orçamento." target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- SCRIPT PARA MENU HAMBURGUER -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

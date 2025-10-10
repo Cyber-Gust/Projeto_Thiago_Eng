@@ -610,6 +610,62 @@ footer {
 }
 
 @media (max-width: 768px) {
+
+    .servicos-expansivos {
+        height: auto; /* A altura da seção se ajustará ao conteúdo */
+    }
+
+    .cards-container {
+        /* Muda a direção do flex para vertical, empilhando os cards */
+        flex-direction: column;
+        height: auto;
+    }
+
+    .card {
+        flex: none; /* Remove a propriedade flex que usávamos no desktop */
+        height: 150px; /* Altura do card fechado */
+        transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Transição focada na altura */
+    }
+
+    /* Remove o efeito de hover do desktop */
+    .cards-container:hover .card:hover {
+        flex: none; 
+        filter: grayscale(100%); /* Mantém preto e branco no hover */
+    }
+
+    .cards-container:hover .card:not(:hover) {
+        filter: grayscale(100%) brightness(1); /* Reseta o brilho */
+    }
+
+    /* --- A MÁGICA DO ACORDEÃO (baseado em classe .active) --- */
+
+    /* Estilo do card ATIVO (aberto) */
+    .card.active {
+        height: 350px; /* Altura do card aberto. Ajuste se precisar de mais espaço. */
+        filter: grayscale(0%); /* Fica colorido ao abrir */
+    }
+
+    .card-content {
+        /* No mobile, o conteúdo começa mais para baixo */
+        transform: translateY(50%);
+        padding: 1.5rem; /* Menor preenchimento em telas pequenas */
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    
+    /* Quando o card está ativo, o conteúdo sobe */
+    .card.active .card-content {
+        transform: translateY(0);
+    }
+
+    .card-title {
+        font-size: 1.3rem; /* Título um pouco menor no mobile */
+    }
+    
+    /* A descrição aparece quando o card está ativo */
+    .card.active .card-description {
+        opacity: 1;
+    }
+
     section {
         padding: 60px 0;
     }

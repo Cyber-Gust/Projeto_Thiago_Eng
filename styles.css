@@ -132,8 +132,26 @@ section {
 .header.scrolled .hamburger {
     color: var(--accent-color); /* Mantém amarelo no scroll */
 }
-.dropdown { position: relative; }
-.dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: var(--white-color); list-style: none; box-shadow: var(--box-shadow); border-radius: var(--border-radius); padding: 10px 0; width: 250px; margin-top: 10px; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; }
+.dropdown { 
+    position: relative; 
+    padding-bottom: 10px; /* 1. CRIA A "PONTE" INVISÍVEL */
+}
+.dropdown-menu { 
+    display: none; 
+    position: absolute; 
+    top: 100%; 
+    left: 0; 
+    background-color: var(--white-color); 
+    list-style: none; 
+    box-shadow: var(--box-shadow); 
+    border-radius: var(--border-radius); 
+    padding: 10px 0; 
+    width: 250px; 
+    /* margin-top: 10px; <-- 2. REMOVE O "BURACO" */
+    opacity: 0; 
+    transform: translateY(10px); 
+    transition: opacity 0.3s ease, transform 0.3s ease; 
+}
 .dropdown:hover .dropdown-menu { display: block; opacity: 1; transform: translateY(0); }
 .dropdown-item a { display: block; padding: 10px 20px; text-decoration: none; color: var(--primary-color); transition: background-color 0.3s ease, color 0.3s ease; }
 .dropdown-item a:hover { background-color: var(--accent-color); color: var(--white-color); }

@@ -90,4 +90,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 counterObserver.observe(counter);
         });
     }
+
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+        // Adiciona um "ouvinte" de clique a cada card
+        card.addEventListener('click', () => {
+            // Procura se já existe um card ativo
+            const activeCard = document.querySelector('.card.active');
+
+            // Se existe um card ativo e NÃO é o que acabamos de clicar, remove a classe 'active' dele
+            if (activeCard && activeCard !== card) {
+                activeCard.classList.remove('active');
+            }
+
+            // Adiciona ou remove a classe 'active' do card que foi clicado
+            // (Permite abrir e fechar o mesmo card)
+            card.classList.toggle('active');
+        });
+    });
+    
 });
+

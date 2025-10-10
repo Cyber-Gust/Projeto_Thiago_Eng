@@ -615,6 +615,11 @@ footer {
         height: auto; /* A altura da seção se ajustará ao conteúdo */
     }
 
+    #hero {
+        height: 65vh; /* Altura reduzida para telas menores */
+        padding: 0 20px; /* Pequeno padding lateral */
+    }
+
     .cards-container {
         /* Muda a direção do flex para vertical, empilhando os cards */
         flex-direction: column;
@@ -674,6 +679,9 @@ footer {
         display: block;
     }
     
+    #contato {
+        margin-top: 150px;
+    }
     .nav-menu {
         position: fixed;
         left: -100%;

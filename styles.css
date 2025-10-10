@@ -300,7 +300,7 @@ section {
     width: 100%;
     background-color: white; /* Fundo preto */
     /* Padding para dar espaço ao título e um respiro geral */
-    padding: 80px 20px; 
+    padding: 80px 0px; 
     box-sizing: border-box; /* Garante que o padding não some à largura total */
 }
 

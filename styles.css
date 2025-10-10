@@ -617,6 +617,10 @@ footer {
   color: inherit; /* Herda a cor do elemento pai */
 }
 
+.nav-item-close {
+    display: none;
+}
+
 
 /* MEDIA QUERIES PARA RESPONSIVIDADE */
 @media (max-width: 992px) {
@@ -799,24 +803,25 @@ footer {
     .depoimentos-grid {
         grid-template-columns: 1fr;
     }
+    /* Estilo para o botão de fechar o menu */
+    .close-menu-btn {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        background: none;
+        border: none;
+        color: var(--white-color); /* Cor branca para contrastar com o fundo */
+        font-size: 2.5rem;   /* Tamanho grande para ser fácil de tocar */
+        font-weight: 300;
+        cursor: pointer;
+        line-height: 1;
+        padding: 0;
+    }
+
+    /* Evita que o item de lista do botão ocupe espaço desnecessário */
+    .nav-item-close {
+        list-style: none;
+        display: block;
+    }
 }
 
-/* Estilo para o botão de fechar o menu */
-.close-menu-btn {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    background: none;
-    border: none;
-    color: var(--white-color); /* Cor branca para contrastar com o fundo */
-    font-size: 2.5rem;   /* Tamanho grande para ser fácil de tocar */
-    font-weight: 300;
-    cursor: pointer;
-    line-height: 1;
-    padding: 0;
-}
-
-/* Evita que o item de lista do botão ocupe espaço desnecessário */
-.nav-item-close {
-    list-style: none;
-}

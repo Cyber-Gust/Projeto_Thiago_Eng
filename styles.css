@@ -85,58 +85,58 @@ section {
 }
 
 /* HEADER COM EFEITO DE SCROLL */
-        .header {
-            background-color: transparent;
-            padding: 15px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            transition: background-color 0.4s ease, box-shadow 0.4s ease;
-        }
-        .header.scrolled {
-            background-color: var(--primary-color);
-            box-shadow: var(--box-shadow);
-        }
-        .navbar { display: flex; justify-content: space-between; align-items: center; }
-        .logo img { height: 50px; }
-        .nav-menu { list-style: none; display: flex; }
-        .nav-item { margin-left: 30px; }
-        .nav-link {
-            text-decoration: none;
-            color: var(--white-color);
-            font-weight: 500;
-            position: relative;
-            padding-bottom: 5px;
-            transition: color 0.4s ease;
-        }
-        .header.scrolled .nav-link {
-            color: var(--white-color);
-        }
-        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent-color); transition: width 0.3s ease; }
-        .nav-link:hover, .nav-link.active {
-            color: var(--accent-color);
-        }
-        .header.scrolled .nav-link:hover, .header.scrolled .nav-link.active {
-            color: var(--accent-color);
-        }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            transition: color 0.4s ease;
-        }
-        .header.scrolled .hamburger {
-            color: var(--white-color);
-        }
-        .dropdown { position: relative; }
-        .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: var(--white-color); list-style: none; box-shadow: var(--box-shadow); border-radius: var(--border-radius); padding: 10px 0; width: 250px; margin-top: 10px; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; }
-        .dropdown:hover .dropdown-menu { display: block; opacity: 1; transform: translateY(0); }
-        .dropdown-item a { display: block; padding: 10px 20px; text-decoration: none; color: var(--primary-color); transition: background-color 0.3s ease, color 0.3s ease; }
-        .dropdown-item a:hover { background-color: var(--accent-color); color: var(--white-color); }
+.header {
+    background-color: transparent;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+.header.scrolled {
+    background-color: var(--primary-color);
+    box-shadow: var(--box-shadow);
+}
+.navbar { display: flex; justify-content: space-between; align-items: center; }
+.logo img { height: 50px; }
+.nav-menu { list-style: none; display: flex; }
+.nav-item { margin-left: 30px; }
+.nav-link {
+    text-decoration: none;
+    color: var(--white-color);
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.4s ease;
+}
+.header.scrolled .nav-link {
+    color: var(--white-color);
+}
+.nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent-color); transition: width 0.3s ease; }
+.nav-link:hover, .nav-link.active {
+    color: var(--accent-color);
+}
+.header.scrolled .nav-link:hover, .header.scrolled .nav-link.active {
+    color: var(--accent-color);
+}
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 1.8rem;
+    color: var(--accent-color); /* Alterado para amarelo */
+    transition: color 0.4s ease;
+}
+.header.scrolled .hamburger {
+    color: var(--accent-color); /* Mantém amarelo no scroll */
+}
+.dropdown { position: relative; }
+.dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: var(--white-color); list-style: none; box-shadow: var(--box-shadow); border-radius: var(--border-radius); padding: 10px 0; width: 250px; margin-top: 10px; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; }
+.dropdown:hover .dropdown-menu { display: block; opacity: 1; transform: translateY(0); }
+.dropdown-item a { display: block; padding: 10px 20px; text-decoration: none; color: var(--primary-color); transition: background-color 0.3s ease, color 0.3s ease; }
+.dropdown-item a:hover { background-color: var(--accent-color); color: var(--white-color); }
 
 /* HERO SECTION */
 #hero {
@@ -298,17 +298,23 @@ section {
 
 #servicos-expansivos {
     width: 100%;
-    /* Define uma altura, por exemplo 70% da altura da tela. Ajuste conforme necessário. */
-    height: 70vh; 
-    padding: 0;
-    margin: 0;
-    background-color: #111; /* Cor de fundo caso as imagens demorem a carregar */
+    background-color: white; /* Fundo preto */
+    /* Padding para dar espaço ao título e um respiro geral */
+    padding: 80px 20px; 
+    box-sizing: border-box; /* Garante que o padding não some à largura total */
 }
 
+/* 2. Estilo para o título que acabamos de adicionar */
+#servicos-expansivos .section-title {
+    color: var(--primary-color); /* Deixa o texto do título branco */
+    margin-bottom: 50px;       /* Cria um espaço entre o título e os cards */
+}
+
+/* 3. Ajuste no contêiner dos cards */
 .cards-container {
-    display: flex; /* A mágica começa aqui! */
+    display: flex;
     width: 100%;
-    height: 100%;
+    height: 60vh; /* Altura dedicada apenas para a área dos cards */
     padding: 0;
     margin: 0;
 }
@@ -327,13 +333,14 @@ section {
     /* Efeito preto e branco */
     filter: grayscale(100%); 
     
-    /* Animação suave para todas as propriedades */
-    transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    /* TRANSIÇÃO OTIMIZADA: animamos apenas o filtro */
+    transition: filter 0.4s ease;
 
     display: flex;
     align-items: flex-end; /* Alinha o conteúdo na base do card */
     text-decoration: none;
 }
+
 
 /* Efeito ao passar o mouse em um card */
 .cards-container:hover .card:hover {
@@ -348,7 +355,9 @@ section {
     color: white;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 20%, rgba(0, 0, 0, 0));
     transform: translateY(35%); /* Esconde parcialmente a descrição */
-    transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    
+    /* TRANSIÇÃO OTIMIZADA: animamos apenas a transformação (posição) */
+    transition: transform 0.4s ease;
 }
 
 .cards-container:hover .card:hover .card-content {
@@ -373,8 +382,11 @@ section {
     font-size: 1rem;
     margin-top: 0.5rem;
     opacity: 0; /* Descrição fica invisível por padrão */
-    transition: opacity 0.2s ease-in-out;
+    
+    /* TRANSIÇÃO OTIMIZADA: mantemos a opacidade e ajustamos o tempo */
+    transition: opacity 0.3s ease-in-out;
     transition-delay: 0.2s; /* Atraso para aparecer depois da expansão */
+
     max-width: 350px; /* Limita a largura do texto para não ficar muito longo */
 }
 
@@ -571,6 +583,31 @@ footer {
     z-index: 999;
 }
 
+/* NOVO: Cria a bolinha de notificação */
+.whatsapp-float::after {
+    content: '2'; /* O número que aparecerá dentro da bolinha */
+    position: absolute;
+    top: -5px;      /* Posição vertical (ajuste se necessário) */
+    right: -5px;    /* Posição horizontal (ajuste se necessário) */
+    
+    /* Estilo da bolinha */
+    background-color: #ff3b30; /* Vermelho vibrante */
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%; /* Deixa o formato redondo */
+    border: 2px solid white; /* Borda branca para destacar */
+    
+    /* Estilo do número */
+    font-size: 0.8rem;   /* Tamanho da fonte do número */
+    font-weight: bold;
+    
+    /* Centraliza o número na bolinha */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .whatsapp-float:hover {
     transform: scale(1.1);
 }
@@ -635,7 +672,7 @@ footer {
     /* Remove o efeito de hover do desktop */
     .cards-container:hover .card:hover {
         flex: none; 
-        filter: grayscale(100%); /* Mantém preto e branco no hover */
+        filter: grayscale(0%); /* Mantém preto e branco no hover */
     }
 
     .cards-container:hover .card:not(:hover) {
@@ -680,22 +717,26 @@ footer {
     }
     
     #contato {
-        margin-top: 150px;
+        margin-top: -80px;
     }
     .nav-menu {
         position: fixed;
-        left: -100%;
-        top: 80px; /* Altura do header */
+        right: -100%; /* Inicia fora da tela, à direita */
+        left: auto;   /* Garante que a propriedade 'left' não interfira */
+        top: 0;
         flex-direction: column;
-        background-color: var(--white-color);
+        background-color: var(--primary-color); /* Fundo igual ao header com scroll */
         width: 100%;
+        height: 100vh; /* Ocupa a altura total da tela */
         text-align: center;
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding-top: 100px; /* Espaço no topo para os links não cobrirem o logo */
+        overflow-y: auto; /* Permite scroll se houver muitos itens */
     }
 
     .nav-menu.active {
-        left: 0;
+        right: 0;
     }
 
     .nav-item {
@@ -709,11 +750,23 @@ footer {
         box-shadow: none;
         opacity: 1;
         transform: none;
-        background-color: var(--light-gray-color);
+        background-color: transparent; /* Fundo transparente para unificar */
+        padding-top: 15px; /* Adiciona um respiro */
     }
-    
-    .dropdown:hover .dropdown-menu {
-            /* Desativa o hover em mobile */
+
+    /* ADICIONE ESTA REGRA para os links principais ficarem brancos */
+    .nav-menu .nav-link {
+        color: var(--white-color);
+    }
+
+    /* ADICIONE ESTA REGRA para os links do submenu também ficarem brancos */
+    .nav-menu .dropdown-item a {
+        color: #c7d0e3; /* Um branco um pouco mais suave para diferenciar */
+        padding: 12px 20px;
+    }
+    .nav-menu .dropdown-item a:hover {
+        color: var(--white-color); /* Cor ao passar o mouse */
+        background-color: var(--secondary-color);
     }
 
     .hero-content h1 {
@@ -746,4 +799,24 @@ footer {
     .depoimentos-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Estilo para o botão de fechar o menu */
+.close-menu-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: none;
+    border: none;
+    color: var(--white-color); /* Cor branca para contrastar com o fundo */
+    font-size: 2.5rem;   /* Tamanho grande para ser fácil de tocar */
+    font-weight: 300;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+}
+
+/* Evita que o item de lista do botão ocupe espaço desnecessário */
+.nav-item-close {
+    list-style: none;
 }

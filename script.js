@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // CONSTANTES GERAIS
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
+    const closeBtn = document.querySelector('.close-menu-btn');
     const header = document.querySelector('.header');
 
     // LÓGICA PARA O MENU HAMBURGUER
@@ -11,6 +12,11 @@ document.addEventListener('DOMContentLoaded', function () {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        });
+    }
 
         document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
             hamburger.classList.remove('active');

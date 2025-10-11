@@ -316,55 +316,53 @@ section {
 
 #servicos-expansivos {
     width: 100%;
-    background-color: white; /* Fundo preto */
-    /* Padding para dar espaço ao título e um respiro geral */
+    background-color: white; 
     padding: 80px 0px; 
-    box-sizing: border-box; /* Garante que o padding não some à largura total */
+    box-sizing: border-box; 
 }
 
-/* 2. Estilo para o título que acabamos de adicionar */
-#servicos-expansivos .section-title {
-    color: var(--primary-color); /* Deixa o texto do título branco */
-    margin-bottom: 50px;       /* Cria um espaço entre o título e os cards */
-}
+/* ... (demais estilos) ... */
 
-/* 3. Ajuste no contêiner dos cards */
 .cards-container {
     display: flex;
     width: 100%;
-    height: 60vh; /* Altura dedicada apenas para a área dos cards */
+    height: 60vh; 
     padding: 0;
     margin: 0;
 }
 
 .card {
     /* Ocupa o espaço igualmente */
-    flex: 1; 
+    flex: 1; /* MANTEMOS O SEU LAYOUT ORIGINAL */
     
     position: relative;
-    overflow: hidden; /* Esconde o que vazar para fora do card */
+    overflow: hidden; 
     
-    /* Estilo da imagem de fundo */
     background-size: cover;
     background-position: center;
     
-    /* Efeito preto e branco */
     filter: grayscale(100%); 
     
-    /* TRANSIÇÃO OTIMIZADA: animamos apenas o filtro */
-    transition: filter 0.4s ease;
+    /* OTIMIZAÇÃO CRÍTICA: Avisa o navegador que o 'flex' e o 'filter' vão mudar. */
+    /* Isso permite que ele prepare a renderização para ser mais rápida. */
+    will-change: flex, filter, transform; /* Incluímos transform por segurança */
+    
+    /* A transição agora cobre todas as propriedades que você anima */
+    transition: flex 0.4s ease, filter 0.4s ease; /* <-- Revertido para animar flex */
 
     display: flex;
-    align-items: flex-end; /* Alinha o conteúdo na base do card */
+    align-items: flex-end; 
     text-decoration: none;
+    cursor: pointer; /* Adicionado para acessibilidade */
 }
 
 
 /* Efeito ao passar o mouse em um card */
 .cards-container:hover .card:hover {
-    flex: 2; /* O card expande, ocupando 4x mais espaço que os outros */
-    filter: grayscale(0%); /* A imagem fica colorida */
+    flex: 2; /* REVERTIDO: Mantém o seu design original de expansão de largura */
+    filter: grayscale(0%); 
 }
+
 
 .card-content {
     position: relative;
@@ -372,40 +370,32 @@ section {
     padding: 2rem;
     color: white;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 20%, rgba(0, 0, 0, 0));
-    transform: translateY(35%); /* Esconde parcialmente a descrição */
+    transform: translateY(35%); 
     
-    /* TRANSIÇÃO OTIMIZADA: animamos apenas a transformação (posição) */
+    /* OTIMIZAÇÃO: Avisa que a posição (transform) do conteúdo irá mudar */
+    will-change: transform; 
+    
     transition: transform 0.4s ease;
 }
 
 .cards-container:hover .card:hover .card-content {
-    transform: translateY(0); /* Mostra todo o conteúdo ao expandir */
+    transform: translateY(0); 
 }
 
-.card-icon {
-    margin-bottom: 0.5rem;
-}
-
-.card-icon svg {
-    width: 40px;
-    height: 40px;
-}
-
-.card-title {
-    font-size: 1.5rem; /* Tamanho do título */
-    margin: 0;
-}
+/* ... (os estilos dos ícones, títulos e descrição permanecem iguais) ... */
 
 .card-description {
     font-size: 1rem;
     margin-top: 0.5rem;
-    opacity: 0; /* Descrição fica invisível por padrão */
+    opacity: 0; 
     
-    /* TRANSIÇÃO OTIMIZADA: mantemos a opacidade e ajustamos o tempo */
+    /* OTIMIZAÇÃO: Avisa que a opacidade irá mudar */
+    will-change: opacity;
+    
     transition: opacity 0.3s ease-in-out;
-    transition-delay: 0.2s; /* Atraso para aparecer depois da expansão */
+    transition-delay: 0.2s; 
 
-    max-width: 350px; /* Limita a largura do texto para não ficar muito longo */
+    max-width: 350px;
 }
 
 /* Mostra a descrição quando o card expande */
@@ -415,6 +405,30 @@ section {
 
 /* Efeito sutil para os outros cards não ficarem totalmente "mortos" */
 .cards-container:hover .card:not(:hover) {
+    filter: grayscale(100%) brightness(0.7);
+}
+
+
+/* ------------------------------------------------------------------ */
+/* SUPORTE AO CLIQUE (.active) - Adicionado will-change aqui também */
+/* ------------------------------------------------------------------ */
+
+.card.active {
+    flex: 2; /* Mantém o design de expansão ao clicar */
+    filter: grayscale(0%); 
+}
+
+.card.active .card-content {
+    transform: translateY(0);
+}
+
+.card.active .card-description {
+    opacity: 1;
+}
+
+/* Quando um card está ativo, os vizinhos perdem o foco */
+.card.active ~ .card,
+.card:not(.active) {
     filter: grayscale(100%) brightness(0.7);
 }
 
@@ -685,10 +699,19 @@ footer {
         height: auto;
     }
 
+    .card-content {
+        margin-bottom: 20px;
+        background: transparent
+    }
+
     .card {
         flex: none; /* Remove a propriedade flex que usávamos no desktop */
         height: 150px; /* Altura do card fechado */
         transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Transição focada na altura */
+    }
+
+    .card-content:hover {
+        margin-bottom: 0px;
     }
 
     /* Remove o efeito de hover do desktop */

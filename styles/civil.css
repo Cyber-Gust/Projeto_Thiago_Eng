@@ -1,0 +1,124 @@
+/* CSS GERAL E VARIÁVEIS (MESMO DE INDEX.HTML) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.6;
+    color: var(--dark-gray-color);
+    background-color: var(--white-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 193, 7, 0.3);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(255, 193, 7, 0.5);
+}
+
+
+
+/* ESTILOS DA PÁGINA DE SERVIÇO */
+.service-page-header {
+    padding-top: 150px;
+    padding-bottom: 70px;
+    background-color: var(--primary-color);
+    text-align: center;
+}
+.service-page-header h1 {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+.service-page-header p {
+    font-size: 1.1rem;
+    color: var(--white-color);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.service-content-section {
+    padding: 80px 0;
+}
+.service-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 50px;
+    align-items: flex-start;
+}
+.service-details h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+.service-details p {
+    margin-bottom: 30px;
+}
+.service-list {
+    list-style: none;
+    padding-left: 0;
+}
+.service-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+.service-list .icon {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-right: 15px;
+    width: 25px;
+}
+.service-images img {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 20px;
+}
+
+/* WHATSAPP FLOAT (IDÊNTICO AO INDEX.HTML) */
+.whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2.5rem; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: transform 0.3s ease; z-index: 999; }
+.whatsapp-float:hover { transform: scale(1.1); }
+
+/* RESPONSIVIDADE */
+@media (max-width: 992px) {
+    .service-layout {
+        grid-template-columns: 1fr;
+    }
+    .service-images {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .service-page-header h1 { font-size: 2.5rem; }
+}
+    @media (max-width: 480px) {
+    .service-images { grid-template-columns: 1fr; }
+}

@@ -97,23 +97,46 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.card');
 
-    cards.forEach(card => {
-        // Adiciona um "ouvinte" de clique a cada card
-        card.addEventListener('click', () => {
-            // Procura se já existe um card ativo
-            const activeCard = document.querySelector('.card.active');
+    // 1. Lógica Mobile (toque)
+    // ----------------------------------------------------
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-            // Se existe um card ativo e NÃO é o que acabamos de clicar, remove a classe 'active' dele
-            if (activeCard && activeCard !== card) {
-                activeCard.classList.remove('active');
-            }
-
-            // Adiciona ou remove a classe 'active' do card que foi clicado
-            // (Permite abrir e fechar o mesmo card)
-            card.classList.toggle('active');
+    if (isMobile) {
+        cards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Previne o comportamento padrão de link para gerenciar a abertura
+                e.preventDefault(); 
+                
+                // Se o card já estiver ativo, ele fecha e permite o clique de link
+                if (card.classList.contains('is-active')) {
+                    card.classList.remove('is-active');
+                    // Permite que o link seja seguido após a animação de fechar (opcional)
+                    // window.location.href = card.href; 
+                } else {
+                    // 1. Fecha todos os outros cards
+                    cards.forEach(c => c.classList.remove('is-active'));
+                    // 2. Abre o card clicado
+                    card.classList.add('is-active');
+                }
+            });
         });
+    }
+
+    // 2. Lógica de Alinhamento (Android vs. Outros)
+    // ----------------------------------------------------
+    const container = document.querySelector('.projects-container');
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    // Detecta se o navegador é Android (uma simplificação)
+    const isAndroid = /android/i.test(userAgent);
+
+    if (isAndroid) {
+        // Aplica uma classe para que o CSS possa alinhar à esquerda especificamente
+        container.classList.add('android-align-left');
+    }
     });
     
 });

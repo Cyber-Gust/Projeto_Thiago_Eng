@@ -58,7 +58,7 @@ section {
 .fade-in {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
 }
 
 .fade-in.visible {
@@ -312,125 +312,116 @@ section {
     color: var(--primary-color);
 }
 
-/* ESTILOS PARA A SEÇÃO DE SERVIÇOS EXPANSÍVEIS */
-
-#servicos-expansivos {
-    width: 100%;
-    background-color: white; 
-    padding: 80px 0px; 
-    box-sizing: border-box; 
+:root {
+    /* Define a largura do card normal no desktop (20% para 5 cards) */
+    --card-width-initial: 20%;
+    /* Define a largura do card expandido no desktop (o dobro, 40%) */
+    --card-width-expanded: 40%;
 }
 
-/* ... (demais estilos) ... */
-
-.cards-container {
-    display: flex;
-    width: 100%;
-    height: 60vh; 
-    padding: 0;
+body {
     margin: 0;
+    font-family: sans-serif;
+    background-color: #f4f4f4;
 }
 
+/* Título da Seção */
+.section-title {
+    text-align: center;
+    padding: 40px 0 20px;
+    font-size: 2.5em;
+    color: #333;
+}
+
+/* Container dos Cards no Desktop */
+.projects-container {
+    display: flex;
+    width: 100vw; /* Garante que o container ocupe toda a largura da viewport */
+    overflow: hidden; /* Importante para garantir que os cards das bordas fiquem colados */
+    min-height: 400px; /* Altura mínima para melhor visualização */
+}
+
+/* Estilo Básico do Card */
 .card {
-    /* Ocupa o espaço igualmente */
-    flex: 1; /* MANTEMOS O SEU LAYOUT ORIGINAL */
-    
-    position: relative;
-    overflow: hidden; 
-    
+    /* Ocupa 20% da largura do container */
+    width: var(--card-width-initial);
+    /* Garante que o card ocupe 100% da altura do container */
+    height: 100%; 
+    /* Colado um no outro */
+    margin: 0;
+    /* Imagem de fundo e efeito P&B */
     background-size: cover;
     background-position: center;
+    filter: grayscale(100%); /* Efeito preto e branco inicial */
     
-    filter: grayscale(100%); 
+    /* Transições suaves para a animação */
+    transition: 
+        width 0.4s ease-in-out, 
+        filter 0.4s ease-in-out,
+        flex-grow 0.4s ease-in-out; 
     
-    /* OTIMIZAÇÃO CRÍTICA: Avisa o navegador que o 'flex' e o 'filter' vão mudar. */
-    /* Isso permite que ele prepare a renderização para ser mais rápida. */
-    will-change: flex, filter, transform; /* Incluímos transform por segurança */
-    
-    /* A transição agora cobre todas as propriedades que você anima */
-    transition: flex 0.4s ease, filter 0.4s ease; /* <-- Revertido para animar flex */
-
-    display: flex;
-    align-items: flex-end; 
-    text-decoration: none;
-    cursor: pointer; /* Adicionado para acessibilidade */
-}
-
-
-/* Efeito ao passar o mouse em um card */
-.cards-container:hover .card:hover {
-    flex: 2; /* REVERTIDO: Mantém o seu design original de expansão de largura */
-    filter: grayscale(0%); 
-}
-
-
-.card-content {
+    /* Necessário para posicionar o conteúdo */
     position: relative;
-    width: 100%;
-    padding: 2rem;
+    /* Estilo de link */
+    text-decoration: none;
+    color: white; /* Cor do texto inicial */
+    cursor: pointer;
+}
+
+/* Conteúdo centralizado no card (Icone + Título + Descrição) */
+.card-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centraliza ícone e título */
+    text-align: center;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro para legibilidade */
+    border-radius: 8px;
+    transition: transform 0.4s ease, background-color 0.4s ease;
+    width: 80%;
+}
+
+/* Icone e Título - sempre visíveis */
+.card-icon svg {
     color: white;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 20%, rgba(0, 0, 0, 0));
-    transform: translateY(35%); 
-    
-    /* OTIMIZAÇÃO: Avisa que a posição (transform) do conteúdo irá mudar */
-    will-change: transform; 
-    
-    transition: transform 0.4s ease;
+}
+.card-title {
+    margin-top: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
 }
 
-.cards-container:hover .card:hover .card-content {
-    transform: translateY(0); 
-}
-
-/* ... (os estilos dos ícones, títulos e descrição permanecem iguais) ... */
-
+/* Descrição - Escondida inicialmente */
 .card-description {
-    font-size: 1rem;
-    margin-top: 0.5rem;
-    opacity: 0; 
-    
-    /* OTIMIZAÇÃO: Avisa que a opacidade irá mudar */
-    will-change: opacity;
-    
-    transition: opacity 0.3s ease-in-out;
-    transition-delay: 0.2s; 
-
-    max-width: 350px;
+    opacity: 0;
+    max-height: 0;
+    margin-top: 5px;
+    transition: opacity 0.3s ease 0.1s, max-height 0.3s ease; /* Atraso na opacidade */
+    font-size: 0.9em;
 }
 
-/* Mostra a descrição quando o card expande */
-.cards-container:hover .card:hover .card-description {
+/* ===================================== */
+/* EFEITO HOVER (Desktop) */
+/* ===================================== */
+
+.card:hover {
+    filter: grayscale(0%); /* Fica colorido */
+    width: var(--card-width-expanded); /* Expande para o dobro */
+    z-index: 10; /* Garante que fique acima dos outros */
+}
+
+/* Exibe a descrição ao passar o mouse */
+.card:hover .card-description {
     opacity: 1;
+    max-height: 50px; /* Altura suficiente para mostrar o texto */
 }
 
-/* Efeito sutil para os outros cards não ficarem totalmente "mortos" */
-.cards-container:hover .card:not(:hover) {
-    filter: grayscale(100%) brightness(0.7);
+/* Centraliza o conteúdo (já estava centralizado, mas garante a animação de texto) */
+.card:hover .card-content {
+    transform: translate(-50%, -50%);
 }
 
-
-/* ------------------------------------------------------------------ */
-/* SUPORTE AO CLIQUE (.active) - Adicionado will-change aqui também */
-/* ------------------------------------------------------------------ */
-
-.card.active {
-    flex: 2; /* Mantém o design de expansão ao clicar */
-    filter: grayscale(0%); 
-}
-
-.card.active .card-content {
-    transform: translateY(0);
-}
-
-.card.active .card-description {
-    opacity: 1;
-}
-
-/* Quando um card está ativo, os vizinhos perdem o foco */
-.card.active ~ .card,
-.card:not(.active) {
-    filter: grayscale(100%) brightness(0.7);
-}
 
 /* CONTATO SECTION */
 #contato {
@@ -724,34 +715,47 @@ footer {
         filter: grayscale(100%) brightness(1); /* Reseta o brilho */
     }
 
-    /* --- A MÁGICA DO ACORDEÃO (baseado em classe .active) --- */
-
-    /* Estilo do card ATIVO (aberto) */
-    .card.active {
-        height: 350px; /* Altura do card aberto. Ajuste se precisar de mais espaço. */
-        filter: grayscale(0%); /* Fica colorido ao abrir */
+    /* Mudar para layout vertical (colunas) */
+    .projects-container {
+        flex-direction: column;
+        width: 100%;
+        min-height: auto;
     }
 
+    .card {
+        width: 100% !important; /* Cada card ocupa a largura total */
+        height: 200px; /* Altura padrão para mobile */
+        /* Transições adaptadas para a abertura vertical */
+        transition: 
+            height 0.4s ease-out, 
+            filter 0.4s ease-in-out;
+    }
+
+    /* Conteúdo alinhado à esquerda no Android/Mobile */
     .card-content {
-        /* No mobile, o conteúdo começa mais para baixo */
-        transform: translateY(50%);
-        padding: 1.5rem; /* Menor preenchimento em telas pequenas */
-        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        left: 20px; /* Alinha o conteúdo à esquerda */
+        transform: translateY(-50%); /* Centraliza verticalmente */
+        text-align: left;
+        width: auto;
+        padding: 10px 15px;
     }
     
-    /* Quando o card está ativo, o conteúdo sobe */
-    .card.active .card-content {
-        transform: translateY(0);
+    /* Remove a centralização horizontal do desktop */
+    .card-content {
+        transform: translate(0, -50%); /* Ajuste para não ter o -50% horizontal */
     }
 
-    .card-title {
-        font-size: 1.3rem; /* Título um pouco menor no mobile */
+    /* O card ativo (aberto) em mobile */
+    .card.is-active {
+        height: 400px; /* Expande para cima, empurrando o conteúdo para baixo */
+        filter: grayscale(0%); /* Fica colorido */
     }
     
-    /* A descrição aparece quando o card está ativo */
-    .card.active .card-description {
+    .card.is-active .card-description {
         opacity: 1;
+        max-height: 50px;
     }
+
 
     section {
         padding: 60px 0;

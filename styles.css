@@ -312,116 +312,101 @@ section {
     color: var(--primary-color);
 }
 
-:root {
-    /* Define a largura do card normal no desktop (20% para 5 cards) */
-    --card-width-initial: 20%;
-    /* Define a largura do card expandido no desktop (o dobro, 40%) */
-    --card-width-expanded: 40%;
+/* --- Estilos da Seção de Projetos --- */
+.project-section {
+    width: 100%;
+    overflow: hidden; /* Garante que nada vaze da seção */
 }
 
-body {
-    margin: 0;
-    font-family: sans-serif;
-    background-color: #f4f4f4;
-}
-
-/* Título da Seção */
-.section-title {
+.project-section-title {
     text-align: center;
-    padding: 40px 0 20px;
-    font-size: 2.5em;
+    font-size: 2.5rem;
     color: #333;
+    margin-bottom: 30px;
 }
 
-/* Container dos Cards no Desktop */
-.projects-container {
+.project-container {
     display: flex;
-    width: 100vw; /* Garante que o container ocupe toda a largura da viewport */
-    overflow: hidden; /* Importante para garantir que os cards das bordas fiquem colados */
-    min-height: 400px; /* Altura mínima para melhor visualização */
+    width: 100%;
+    height: 500px; /* Altura fixa para os cards no desktop */
+    margin: 0;
+    padding: 0;
 }
 
-/* Estilo Básico do Card */
-.card {
-    /* Ocupa 20% da largura do container */
-    width: var(--card-width-initial);
-    /* Garante que o card ocupe 100% da altura do container */
-    height: 100%; 
-    /* Colado um no outro */
-    margin: 0;
-    /* Imagem de fundo e efeito P&B */
+.project-card {
+    /* --- Configuração de Flexbox para a expansão --- */
+    flex: 1; /* Cada card começa com a mesma largura */
+    
+    /* --- Estilos Visuais --- */
     background-size: cover;
     background-position: center;
-    filter: grayscale(100%); /* Efeito preto e branco inicial */
-    
-    /* Transições suaves para a animação */
-    transition: 
-        width 0.4s ease-in-out, 
-        filter 0.4s ease-in-out,
-        flex-grow 0.4s ease-in-out; 
-    
-    /* Necessário para posicionar o conteúdo */
-    position: relative;
-    /* Estilo de link */
-    text-decoration: none;
-    color: white; /* Cor do texto inicial */
+    position: relative; /* Essencial para posicionar o conteúdo interno */
+    overflow: hidden; /* Esconde o que estiver fora do card */
     cursor: pointer;
+    
+    /* --- Animações --- */
+    transition: flex 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55), filter 0.5s ease-in-out;
+    
+    /* --- Efeito Preto e Branco Inicial --- */
+    filter: grayscale(100%);
 }
 
-/* Conteúdo centralizado no card (Icone + Título + Descrição) */
-.card-content {
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Escurece a imagem para o texto ser legível */
+    transition: background-color 0.5s ease;
+}
+
+.project-content {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centraliza ícone e título */
-    text-align: center;
-    padding: 15px;
-    background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro para legibilidade */
-    border-radius: 8px;
-    transition: transform 0.4s ease, background-color 0.4s ease;
-    width: 80%;
-}
-
-/* Icone e Título - sempre visíveis */
-.card-icon svg {
-    color: white;
-}
-.card-title {
-    margin-top: 5px;
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-/* Descrição - Escondida inicialmente */
-.card-description {
-    opacity: 0;
-    max-height: 0;
-    margin-top: 5px;
-    transition: opacity 0.3s ease 0.1s, max-height 0.3s ease; /* Atraso na opacidade */
-    font-size: 0.9em;
-}
-
-/* ===================================== */
-/* EFEITO HOVER (Desktop) */
-/* ===================================== */
-
-.card:hover {
-    filter: grayscale(0%); /* Fica colorido */
-    width: var(--card-width-expanded); /* Expande para o dobro */
-    z-index: 10; /* Garante que fique acima dos outros */
-}
-
-/* Exibe a descrição ao passar o mouse */
-.card:hover .card-description {
-    opacity: 1;
-    max-height: 50px; /* Altura suficiente para mostrar o texto */
-}
-
-/* Centraliza o conteúdo (já estava centralizado, mas garante a animação de texto) */
-.card:hover .card-content {
     transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    width: 90%;
+    z-index: 2; /* Garante que o conteúdo fique acima do overlay */
+    transition: all 0.5s ease;
 }
 
+.project-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.project-title {
+    font-size: 1.8rem;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.project-description {
+    font-size: 1rem;
+    margin-top: 15px;
+    max-height: 0; /* Começa escondida */
+    opacity: 0; /* Começa invisível */
+    transition: max-height 0.4s ease-out, opacity 0.4s ease-out 0.2s; /* Transição suave */
+}
+
+/* --- ESTADO ATIVO/HOVER --- */
+
+.project-card.project-active {
+    flex: 2; /* O card ativo fica 2 vezes maior */
+    filter: grayscale(0%); /* Remove o filtro P&B para ficar colorido */
+}
+
+.project-card.project-active .project-overlay {
+    background-color: rgba(0, 0, 0, 0.3); /* Overlay fica mais sutil no card ativo */
+}
+
+.project-card.project-active .project-description {
+    max-height: 100px; /* Espaço máximo para a descrição aparecer */
+    opacity: 1; /* Descrição fica visível */
+}
 
 /* CONTATO SECTION */
 #contato {
@@ -647,9 +632,6 @@ footer {
 
 /* MEDIA QUERIES PARA RESPONSIVIDADE */
 @media (max-width: 992px) {
-    .section-title {
-        font-size: 2.2rem;
-    }
 
     .sobre-content {
         grid-template-columns: 1fr;
@@ -675,87 +657,10 @@ footer {
 
 @media (max-width: 768px) {
 
-    .servicos-expansivos {
-        height: auto; /* A altura da seção se ajustará ao conteúdo */
-    }
-
     #hero {
         height: 65vh; /* Altura reduzida para telas menores */
         padding: 0 20px; /* Pequeno padding lateral */
     }
-
-    .cards-container {
-        /* Muda a direção do flex para vertical, empilhando os cards */
-        flex-direction: column;
-        height: auto;
-    }
-
-    .card-content {
-        margin-bottom: 20px;
-        background: transparent
-    }
-
-    .card {
-        flex: none; /* Remove a propriedade flex que usávamos no desktop */
-        height: 150px; /* Altura do card fechado */
-        transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Transição focada na altura */
-    }
-
-    .card-content:hover {
-        margin-bottom: 0px;
-    }
-
-    /* Remove o efeito de hover do desktop */
-    .cards-container:hover .card:hover {
-        flex: none; 
-        filter: grayscale(0%); /* Mantém preto e branco no hover */
-    }
-
-    .cards-container:hover .card:not(:hover) {
-        filter: grayscale(100%) brightness(1); /* Reseta o brilho */
-    }
-
-    /* Mudar para layout vertical (colunas) */
-    .projects-container {
-        flex-direction: column;
-        width: 100%;
-        min-height: auto;
-    }
-
-    .card {
-        width: 100% !important; /* Cada card ocupa a largura total */
-        height: 200px; /* Altura padrão para mobile */
-        /* Transições adaptadas para a abertura vertical */
-        transition: 
-            height 0.4s ease-out, 
-            filter 0.4s ease-in-out;
-    }
-
-    /* Conteúdo alinhado à esquerda no Android/Mobile */
-    .card-content {
-        left: 20px; /* Alinha o conteúdo à esquerda */
-        transform: translateY(-50%); /* Centraliza verticalmente */
-        text-align: left;
-        width: auto;
-        padding: 10px 15px;
-    }
-    
-    /* Remove a centralização horizontal do desktop */
-    .card-content {
-        transform: translate(0, -50%); /* Ajuste para não ter o -50% horizontal */
-    }
-
-    /* O card ativo (aberto) em mobile */
-    .card.is-active {
-        height: 400px; /* Expande para cima, empurrando o conteúdo para baixo */
-        filter: grayscale(0%); /* Fica colorido */
-    }
-    
-    .card.is-active .card-description {
-        opacity: 1;
-        max-height: 50px;
-    }
-
 
     section {
         padding: 60px 0;
@@ -764,10 +669,11 @@ footer {
     .hamburger {
         display: block;
     }
-    
+
     #contato {
-        margin-top: -80px;
+        padding-top: 0px; 
     }
+
     .nav-menu {
         position: fixed;
         right: -100%; /* Inicia fora da tela, à direita */
@@ -824,6 +730,39 @@ footer {
 
     .hero-content p {
         font-size: 1rem;
+    }
+
+    /* --- REGRAS DA SEÇÃO PROJETOS PARA MOBILE --- */
+    .project-container {
+        flex-direction: column; /* Empilha os cards verticalmente */
+    }
+
+    .project-card {
+        height: 150px; /* Altura do card fechado no mobile */
+        transition: height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease-in-out;
+    }
+
+    .project-card.project-active {
+        height: 300px; /* O card ativo expande a altura, empurrando o conteúdo para baixo */
+    }
+
+    .project-content {
+        text-align: left; /* Alinhamento à esquerda no mobile */
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0 20px; /* Adiciona um espaçamento nas laterais */
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .project-title {
+        font-size: 1rem;
+    }
+
+    .project-icon {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
     }
 
     .footer-content {

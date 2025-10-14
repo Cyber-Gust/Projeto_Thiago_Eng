@@ -97,47 +97,52 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.card');
-
-    // 1. Lógica Mobile (toque)
-    // ----------------------------------------------------
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-    if (isMobile) {
-        cards.forEach(card => {
-            card.addEventListener('click', (e) => {
-                // Previne o comportamento padrão de link para gerenciar a abertura
-                e.preventDefault(); 
-                
-                // Se o card já estiver ativo, ele fecha e permite o clique de link
-                if (card.classList.contains('is-active')) {
-                    card.classList.remove('is-active');
-                    // Permite que o link seja seguido após a animação de fechar (opcional)
-                    // window.location.href = card.href; 
-                } else {
-                    // 1. Fecha todos os outros cards
-                    cards.forEach(c => c.classList.remove('is-active'));
-                    // 2. Abre o card clicado
-                    card.classList.add('is-active');
-                }
-            });
-        });
-    }
-
-    // 2. Lógica de Alinhamento (Android vs. Outros)
-    // ----------------------------------------------------
-    const container = document.querySelector('.projects-container');
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-    // Detecta se o navegador é Android (uma simplificação)
-    const isAndroid = /android/i.test(userAgent);
-
-    if (isAndroid) {
-        // Aplica uma classe para que o CSS possa alinhar à esquerda especificamente
-        container.classList.add('android-align-left');
-    }
-    });
+    
     
 });
 
+
+
+document.addEventListener('DOMContentLoaded', () => {
+        const projectCards = document.querySelectorAll('.project-card');
+        const projectContainer = document.querySelector('.project-container');
+
+        // Função para remover a classe ativa de todos os cards
+        const removeActiveClass = () => {
+            projectCards.forEach(card => {
+                card.classList.remove('project-active');
+            });
+        };
+
+        projectCards.forEach(card => {
+            // Lógica para desktop (passar o mouse)
+            card.addEventListener('mouseover', () => {
+                // Verifica se a tela é maior que 768px (não é mobile)
+                if (window.innerWidth > 768) {
+                    removeActiveClass();
+                    card.classList.add('project-active');
+                }
+            });
+
+            // Lógica para mobile (clique)
+            card.addEventListener('click', () => {
+                // Verifica se a tela é 768px ou menor (é mobile)
+                if (window.innerWidth <= 768) {
+                    // Se o card clicado já estiver ativo, fecha ele. Senão, abre.
+                    if (card.classList.contains('project-active')) {
+                        card.classList.remove('project-active');
+                    } else {
+                        removeActiveClass();
+                        card.classList.add('project-active');
+                    }
+                }
+            });
+        });
+
+        // No desktop, quando o mouse sai da área dos cards, todos fecham
+        if (projectContainer && window.innerWidth > 768) {
+            projectContainer.addEventListener('mouseleave', () => {
+                removeActiveClass();
+            });
+        }
+    });

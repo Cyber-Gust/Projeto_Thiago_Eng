@@ -1,3 +1,12 @@
+// LÓGICA PARA O PRELOADER
+window.addEventListener('load', function() {
+    const preloader = document.querySelector('.preloader');
+    if (preloader) {
+        // Adiciona a classe que inicia a transição de fade-out
+        preloader.classList.add('hidden');
+    }
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     
     // CONSTANTES GERAIS

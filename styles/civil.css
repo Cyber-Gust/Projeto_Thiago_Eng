@@ -47,6 +47,8 @@ body {
     padding-bottom: 70px;
     background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(12, 42, 77, 0.8)), url("../imgs/pages/bg_civ.jpg");
     text-align: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .service-page-header h1 {
     font-size: 3rem;

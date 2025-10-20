@@ -45,6 +45,8 @@ body {
     padding-bottom: 70px;
     background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(12, 42, 77, 0.8)), url("../imgs/pages/bg_seg.jpg");
     text-align: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .service-page-header h1 {
     font-size: 3rem;
@@ -97,11 +99,6 @@ body {
     box-shadow: var(--box-shadow);
     margin-bottom: 20px;
 }
-
-/* FOOTER (IDÊNTICO AO INDEX.HTML) */
-footer { background-color: var(--primary-color); color: var(--light-gray-color); padding: 30px 0; }
-.footer-content { display: flex; justify-content: space-between; align-items: center; }
-.footer-logo img { height: 40px; opacity: 0.8; }
 
 /* WHATSAPP FLOAT (IDÊNTICO AO INDEX.HTML) */
 .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2.5rem; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: transform 0.3s ease; z-index: 999; }

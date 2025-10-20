@@ -44,7 +44,7 @@ body {
 .service-page-header {
     padding-top: 150px;
     padding-bottom: 70px;
-    background-color: var(--primary-color);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(12, 42, 77, 0.8)), url("../imgs/pages/bg_el.jpg");
     text-align: center;
 }
 .service-page-header h1 {

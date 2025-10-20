@@ -105,7 +105,58 @@ document.addEventListener('DOMContentLoaded', function () {
                 counterObserver.observe(counter);
         });
     }
+    
+    // Inicialização do Swiper para Clientes
+    const clientSwiperSettings = {
+        loop: true,
+        autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+        },
+        speed: 5000, // Ajuste este valor para controlar a velocidade (maior = mais lento)
+        slidesPerView: 'auto',
+        freeMode: true,
+        breakpoints: {
+            0: { // Para mobile pequeno
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            768: { // Para tablets
+                slidesPerView: 3,
+                spaceBetween: 30
+            },
+            992: { // Para desktops menores
+                slidesPerView: 4,
+                spaceBetween: 40
+            },
+            1200: { // Para desktops maiores
+                slidesPerView: 5,
+                spaceBetween: 50
+            }
+        },
+    };
 
+    // Inicialização do Carrossel 1 (Rola para a Direita)
+    if (document.querySelector('.client-swiper-right')) {
+        new Swiper('.client-swiper-right', {
+            ...clientSwiperSettings, // Copia todas as configurações base
+            autoplay: {
+                ...clientSwiperSettings.autoplay, // Copia as configurações de autoplay
+                reverseDirection: false // Direção padrão (para a direita)
+            },
+        });
+    }
+
+    // Inicialização do Carrossel 2 (Rola para a Esquerda)
+    if (document.querySelector('.client-swiper-left')) {
+        new Swiper('.client-swiper-left', {
+            ...clientSwiperSettings, // Copia todas as configurações base
+            autoplay: {
+                ...clientSwiperSettings.autoplay, // Copia as configurações de autoplay
+                reverseDirection: true // Inverte a direção (para a esquerda)
+            },
+        });
+    }
     
     
 });

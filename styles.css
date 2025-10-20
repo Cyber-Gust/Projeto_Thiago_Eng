@@ -1,11 +1,12 @@
 /* CSS GERAL E VARIÁVEIS DE COR */
 :root {
-    --primary-color: #0A2647; /* Azul escuro principal */
-    --secondary-color: #144272; /* Azul secundário */
+    --primary-color: #1c3e67; /* Azul escuro principal */
+    --secondary-color: #2066a7; /* Azul secundário */
     --accent-color: #FFC107;   /* Amarelo/Dourado para destaque */
     --light-gray-color: #f4f7fc; /* Cinza claro para fundos de seção */
     --dark-gray-color: #333333; /* Cinza escuro para texto */
     --white-color: #ffffff;
+    --gray-color: #797979;
     --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     --border-radius: 12px;
 }
@@ -110,7 +111,10 @@ section {
     background-color: var(--accent-color);
     color: var(--primary-color);
     padding: 12px 25px;
+    align-items: center;
+    text-align: center;
     border-radius: 50px;
+    width: 300px;
     text-decoration: none;
     font-weight: 600;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -134,7 +138,7 @@ section {
     transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
 .header.scrolled {
-    background-color: var(--primary-color);
+    background-color: var(--white-color);
     box-shadow: var(--box-shadow);
 }
 .navbar { display: flex; justify-content: space-between; align-items: center; }
@@ -143,14 +147,14 @@ section {
 .nav-item { margin-left: 30px; }
 .nav-link {
     text-decoration: none;
-    color: var(--white-color);
+    color: var(--primary-color);
     font-weight: 500;
     position: relative;
     padding-bottom: 5px;
     transition: color 0.4s ease;
 }
 .header.scrolled .nav-link {
-    color: var(--white-color);
+    color: var(--primary-color);
 }
 .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--accent-color); transition: width 0.3s ease; }
 .nav-link:hover, .nav-link.active {
@@ -196,13 +200,13 @@ section {
 
 /* HERO SECTION */
 #hero {
-    background-image: linear-gradient(rgba(10, 38, 71, 0.8), rgba(10, 38, 71, 0.8)), url("imgs/bg_hero.jpg");
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(12, 42, 77, 0.8)), url("imgs/bg_hero.jpg");
     background-size: cover;
     background-position: center;
     height: 100vh;
     display: flex;
     align-items: center;
-    color: var(--white-color);
+    color: var(--primary-color);
     text-align: center;
     padding-top: 80px; /* Offset for fixed header */
 }
@@ -219,7 +223,7 @@ section {
 }
 
 .hero-content p {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin-bottom: 30px;
 }
 
@@ -668,6 +672,135 @@ footer {
 }
 
 
+/* --- SEÇÃO CLIENTES --- */
+#clientes {
+    background-color: var(--white-color);
+    padding: 60px 0;
+}
+
+.client-swiper {
+    width: 100%; /* Garante que o container do swiper ocupe 100% do seu pai (.container) */
+    height: auto;
+    padding: 20px 0;
+    overflow: hidden; /* <--- ESSENCIAL: Esconde qualquer conteúdo que exceda a largura */
+}
+
+/* Ajuste para o último carrossel para não ter margin-bottom desnecessário */
+.client-swiper:last-of-type {
+    margin-bottom: 0;
+}
+
+
+.client-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    
+    /* Importante para 'slidesPerView: auto' */
+    /* Define uma largura base para cada slide. Ajuste conforme o tamanho ideal dos seus logos. */
+    /* Isso ajuda o Swiper a calcular e a manter os slides dentro do container */
+    width: 180px; /* <--- NOVA LINHA: Largura fixa para cada slide. */
+    flex-shrink: 0; /* Impede que os slides diminuam de tamanho */
+    /* Remove min-width se você tiver, pois width já define */
+}
+
+.client-logo-wrapper img {
+    max-width: 150px;
+    max-height: 100px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+    opacity: 0.8;
+}
+
+.client-logo-wrapper img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* --- SEÇÃO MISSÃO, VISÃO E VALORES --- */
+#valores {
+    background-color: var(--light-gray-color); /* Um fundo sutil para a seção */
+    padding: 80px 0;
+}
+
+.valores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 colunas em telas grandes, ajusta para menos em menores */
+    gap: 30px; /* Espaçamento entre os cards */
+    max-width: 1200px; /* Garante que não estique demais em telas ultra-largas */
+    margin: 0 auto; /* Centraliza o grid */
+}
+
+.valores-card {
+    background-color: var(--white-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Para centralizar conteúdo verticalmente se necessário */
+    flex-direction: column;
+    justify-content: flex-start; /* Alinha o conteúdo ao topo do card */
+    align-items: center;
+}
+
+.valores-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.valores-card .icon-wrapper {
+    font-size: 3.5rem; /* Tamanho do ícone */
+    color: var(--accent-color); /* Cor do ícone */
+    margin-bottom: 20px;
+    height: 70px; /* Altura fixa para os ícones */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.valores-card h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.valores-card p {
+    font-size: 1rem;
+    color: var(--dark-gray-color);
+    line-height: 1.7;
+    margin-bottom: 0; /* Para o parágrafo da Missão/Visão */
+}
+
+.valores-card ul {
+    list-style: none; /* Remove marcadores de lista padrão */
+    text-align: left; /* Alinha os itens da lista à esquerda */
+    width: 100%; /* Ocupa a largura total do card */
+    padding: 0 15px; /* Adiciona padding lateral para a lista */
+    margin-top: 10px;
+}
+
+.valores-card ul li {
+    font-size: 1rem;
+    color: var(--dark-gray-color);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.valores-card ul li:last-child {
+    margin-bottom: 0;
+}
+
+.valores-card ul li i {
+    color: var(--secondary-color); /* Cor do ícone de check */
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
 /* MEDIA QUERIES PARA RESPONSIVIDADE */
 @media (max-width: 992px) {
 
@@ -811,13 +944,45 @@ footer {
     .footer-logo {
         margin-top: 20px;
     }
+    .valores-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    }
+    .valores-card {
+        padding: 25px;
+    }
+    .valores-card h3 {
+        font-size: 1.6rem;
+    }
+    .valores-card .icon-wrapper {
+        font-size: 3rem;
+        height: 60px;
+    }
 }
 
 @media (max-width: 480px) {
     .hero-content h1 {
         font-size: 2rem;
     }
-    
+    .client-logo-wrapper {
+        height: 100px;
+    }
+    .client-logo-wrapper img {
+        max-width: 120px;
+        max-height: 80px;
+    }
+    #valores {
+        padding: 60px 0;
+    }
+    .valores-card h3 {
+        font-size: 1.4rem;
+    }
+    .valores-card p, .valores-card ul li {
+        font-size: 0.9rem;
+    }
+    .valores-card ul {
+        padding: 0 10px;
+    }
+
     #numeros .container {
         grid-template-columns: 1fr;
     }

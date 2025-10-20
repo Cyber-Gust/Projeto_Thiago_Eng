@@ -168,11 +168,11 @@ section {
     display: none;
     cursor: pointer;
     font-size: 1.8rem;
-    color: var(--accent-color); /* Alterado para amarelo */
+    color: var(--primary-color); /* Alterado para amarelo */
     transition: color 0.4s ease;
 }
 .header.scrolled .hamburger {
-    color: var(--accent-color); /* Mantém amarelo no scroll */
+    color: var(--primary-color); /* Mantém amarelo no scroll */
 }
 .dropdown { 
     position: relative; 

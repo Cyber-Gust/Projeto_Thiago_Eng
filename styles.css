@@ -961,6 +961,24 @@ footer {
         font-size: 3rem;
         height: 60px;
     }
+
+    .footer-bottom-content {
+        flex-direction: column;
+        gap: 25px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .footer-bottom p {
+        margin: 0;
+        font-size: 0.7rem;
+    }
+
+    .footer-bottom-logo {
+        height: 55px;
+        margin-right: 40px;
+        opacity: 0.8;   
+    }
 }
 
 @media (max-width: 480px) {

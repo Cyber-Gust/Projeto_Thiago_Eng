@@ -235,24 +235,24 @@ section {
 .sobre-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    gap: 30px;
     align-items: center;
+    text-align: center;
 }
 
 .sobre-itens {
     flex-direction: column;
     align-items:center;
+    text-align: left;
 }
 
 .sobre-cta {
-    gap: 0;
-    margin-top: 20px;
-    text-align: center;
-    align-items: center;
+    margin-top: 50px;
+    align-items: left;
 }
 
 .sobre-image img {
-    width: 100%;
+    width: 70%;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
 }
@@ -935,6 +935,11 @@ footer {
 
     .hero-content p {
         font-size: 1rem;
+    }
+
+    .sobre-cta {
+        align-items: center;
+        text-align: center;
     }
 
     .sobre-text h3 {

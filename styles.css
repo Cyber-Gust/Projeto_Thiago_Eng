@@ -517,7 +517,8 @@ footer {
 .footer-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
+    gap: 20px;
+    align-items: center;
 }
 
 .footer-col .footer-main-logo {
@@ -649,30 +650,6 @@ footer {
     z-index: 999;
 }
 
-/* NOVO: Cria a bolinha de notificação */
-.whatsapp-float::after {
-    content: '2'; /* O número que aparecerá dentro da bolinha */
-    position: absolute;
-    top: -5px;      /* Posição vertical (ajuste se necessário) */
-    right: -5px;    /* Posição horizontal (ajuste se necessário) */
-    
-    /* Estilo da bolinha */
-    background-color: #ff3b30; /* Vermelho vibrante */
-    color: white;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%; /* Deixa o formato redondo */
-    border: 2px solid white; /* Borda branca para destacar */
-    
-    /* Estilo do número */
-    font-size: 0.8rem;   /* Tamanho da fonte do número */
-    font-weight: bold;
-    
-    /* Centraliza o número na bolinha */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .whatsapp-float:hover {
     transform: scale(1.1);
